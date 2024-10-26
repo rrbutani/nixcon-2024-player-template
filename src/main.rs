@@ -11,7 +11,14 @@ async fn main() {
         .route("/", get(|| async { "" }))
         .route("/add/{a}/{b}", get(|Path((a, b)): Path<(usize, usize)>| async move { (a + b).to_string() }))
         .route("/mult/{a}/{b}", get(|Path((a, b)): Path<(usize, usize)>| async move { (a * b).to_string() }))
-        .route("/cowsay/{message}", get(|Path(msg): Path<String>| async { todo!() }))
+        .route("/cowsay/{message}", get(|Path(msg): Path<String>| async {
+            let output = std::process::Command::new(COWSAY)
+                .arg(msg)
+                .output()
+                .expect("uhhh");
+
+            output.stdout
+        }))
         .route("/uuid", get(|| async { uuid::Uuid::new_v4().to_string() }))
     ;
 
