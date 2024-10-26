@@ -18,7 +18,7 @@ async fn main() {
                 .output()
                 .expect("uhhh");
 
-            output.stdout
+            String::from_utf8(output.stdout).unwrap()
         }))
         .route("/uuid", get(|| async { uuid::Uuid::new_v4().to_string() }))
     ;
