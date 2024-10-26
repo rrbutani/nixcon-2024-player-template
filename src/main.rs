@@ -12,7 +12,7 @@ async fn main() {
         .route("/add/:a/:b", get(|Path((a, b)): Path<(usize, usize)>| async move { (a + b).to_string() }))
         // .route("/add/:a/:b", get(|Path((a, b)): Path<(String, String)>| async move { dbg!(a, b); "".to_string() }))
         .route("/mult/:a/:b", get(|Path((a, b)): Path<(usize, usize)>| async move { (a * b).to_string() }))
-        .route("/cowsay/{message}", get(|Path(msg): Path<String>| async {
+        .route("/cowsay/:msg", get(|Path(msg): Path<String>| async {
             let output = std::process::Command::new(COWSAY)
                 .arg(msg)
                 .output()
