@@ -1,0 +1,9 @@
+[package]
+name = "garnix-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.7.7"
+tokio = { version = "1.41.0", features = ["rt-multi-thread"] }
+uuid = { version = "1.11", features = ["v4"] }

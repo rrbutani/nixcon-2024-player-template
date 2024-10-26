@@ -1,2 +1,7 @@
 .nixos-test-history
 *.qcow2
+
+
+# Added by cargo
+
+/target
